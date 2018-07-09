@@ -15,7 +15,7 @@ logger.info('This is an info message')
 logger.verbose('This is a verbose message')
 logger.debug('This is a debug message')
 
-// add single tag
+// add tags
 logger.info('One tag', 'myTag')
 logger.info('Multiple tags', ['myTag', 'myOtherTag'])
 ```
