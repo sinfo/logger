@@ -1,5 +1,5 @@
-const logger = require('./index')
+const logger = require('./index').getLogger()
 
-logger.info('info message without tags')
-logger.info('info message with tag', [ 'myTag' ])
-logger.info('info message with multiple tags', [ 'myTag', 'myOtherTag' ])
+logger.info('without tags')
+logger.info('with tag', [ 'myTag' ])
+logger.info('with multiple tags', [ 'myTag', 'myOtherTag' ])

@@ -33,29 +33,35 @@ let transports = [
   })
 ]
 
-if (process.env.NODE_ENV === 'production') {
-  transports.push(
-    new LogentriesTransport({
-      level: 'info',
-      handleExceptions: true
-    })
-  )
-}
+module.exports.getLogger = (token) => {
+  if (token !== undefined) {
+    transports.push(
+      new LogentriesTransport({
+        level: 'info',
+        handleExceptions: true,
+        token: token
+      })
+    )
+  }
 
-const logger = winston.createLogger({ transports: transports })
+  const logger = winston.createLogger({ transports: transports })
 
-function wrapper (level) {
-  return (message, tags) => {
-    if (tags) {
-      logger[level]({ message: message, tags: tags })
-    } else {
-      logger[level](message)
+  function wrapper (level) {
+    return (message, tags) => {
+      if (tags) {
+        logger[level]({ message: message, tags: tags })
+      } else {
+        logger[level](message)
+      }
     }
   }
-}
 
-module.exports.error = wrapper('info')
-module.exports.warn = wrapper('warn')
-module.exports.info = wrapper('info')
-module.exports.verbose = wrapper('verbose')
-module.exports.debug = wrapper('debug')
+  return {
+    error: wrapper('info'),
+    warn: wrapper('warn'),
+    info: wrapper('info'),
+    verbose: wrapper('verbose'),
+    debug: wrapper('debug')
+
+  }
+}
