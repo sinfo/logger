@@ -1,0 +1,40 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "description": "Universal logger for all SINFO's applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinfo/logger.git"
+  },
+  "keywords": [
+    "logger",
+    "SINFO"
+  ],
+  "author": "SINFO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sinfo/logger/issues"
+  },
+  "homepage": "https://github.com/sinfo/logger#readme",
+  "devDependencies": {
+    "eslint": "^5.1.0",
+    "eslint-config-standard": "^12.0.0-alpha.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "pre-commit": "^1.2.2"
+  },
+  "dependencies": {
+    "moment": "^2.22.2",
+    "winston": "^3.0.0"
+  }
+}
