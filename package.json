@@ -4,7 +4,7 @@
   "description": "Universal logger for all SINFO's applications",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node test.js",
     "lint": "./node_modules/.bin/eslint --ext .js ."
   },
   "pre-commit": [

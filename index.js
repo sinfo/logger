@@ -1,6 +1,7 @@
 var winston = require('winston')
 const moment = require('moment')
 let LogentriesTransport = require('./logentries')
+let logger = null
 
 const timestamp = function () {
   return moment().format('DD-MM-YYYY HH:mm:ss').trim()
@@ -33,7 +34,11 @@ let transports = [
   })
 ]
 
-module.exports.getLogger = (token) => {
+module.exports.getLogger = function (token) {
+  if (logger !== null) {
+    return logger
+  }
+
   if (token !== undefined) {
     transports.push(
       new LogentriesTransport({
@@ -44,7 +49,7 @@ module.exports.getLogger = (token) => {
     )
   }
 
-  const logger = winston.createLogger({ transports: transports })
+  logger = winston.createLogger({ transports: transports })
 
   function wrapper (level) {
     return (message, tags) => {
