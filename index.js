@@ -57,11 +57,10 @@ module.exports.getLogger = (token) => {
   }
 
   return {
-    error: wrapper('info'),
+    error: wrapper('error'),
     warn: wrapper('warn'),
     info: wrapper('info'),
     verbose: wrapper('verbose'),
     debug: wrapper('debug')
-
   }
 }
