@@ -34,9 +34,27 @@ let transports = [
   })
 ]
 
+function wrapper (level) {
+  return (message, tags) => {
+    if (tags) {
+      logger[level]({ message: message, tags: tags })
+    } else {
+      logger[level](message)
+    }
+  }
+}
+
+const loggerHelper = {
+  error: wrapper('error'),
+  warn: wrapper('warn'),
+  info: wrapper('info'),
+  verbose: wrapper('verbose'),
+  debug: wrapper('debug')
+}
+
 module.exports.getLogger = function (token) {
   if (logger !== null) {
-    return logger
+    return loggerHelper
   }
 
   if (token !== undefined) {
@@ -51,21 +69,5 @@ module.exports.getLogger = function (token) {
 
   logger = winston.createLogger({ transports: transports })
 
-  function wrapper (level) {
-    return (message, tags) => {
-      if (tags) {
-        logger[level]({ message: message, tags: tags })
-      } else {
-        logger[level](message)
-      }
-    }
-  }
-
-  return {
-    error: wrapper('error'),
-    warn: wrapper('warn'),
-    info: wrapper('info'),
-    verbose: wrapper('verbose'),
-    debug: wrapper('debug')
-  }
+  return loggerHelper
 }
