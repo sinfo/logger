@@ -8,6 +8,7 @@ const timestamp = function () {
 }
 
 const myFormat = winston.format.printf(info => {
+  console.log('info', info)
   let tags = info.tags
 
   if (info.error !== undefined) {
