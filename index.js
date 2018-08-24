@@ -12,7 +12,7 @@ const myFormat = winston.format.printf(info => {
 
   if (info.error !== undefined) {
     info = {
-      message: JSON.stringify(info.error),
+      message: JSON.stringify(info.error) === undefined ? info.error : JSON.stringify(info.error),
       level: info.level
     }
   }
