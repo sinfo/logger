@@ -8,7 +8,6 @@ const timestamp = function () {
 }
 
 const myFormat = winston.format.printf(info => {
-  console.log('info', info)
   let tags = info.tags
 
   if (info.error !== undefined) {
@@ -36,8 +35,8 @@ let transports = [
 ]
 
 function wrapper (level) {
-  console.log('level', level)
   return (message, tags) => {
+    message = typeof (message) === 'object' ? JSON.stringify(message) : message
     if (tags) {
       logger[level]({ message: message, tags: tags })
     } else {
