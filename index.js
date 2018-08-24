@@ -36,6 +36,7 @@ let transports = [
 ]
 
 function wrapper (level) {
+  console.log('level', level)
   return (message, tags) => {
     if (tags) {
       logger[level]({ message: message, tags: tags })
