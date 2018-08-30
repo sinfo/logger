@@ -1,6 +1,8 @@
 const TOKEN = process.argv[2]
+const APIKEY = process.argv[3]
+const APP = process.argv[4]
 
-const logger = require('./index').getLogger(TOKEN)
+const logger = require('./index').getLogger(TOKEN, APIKEY, APP)
 
 logger.info('without tags')
 logger.info('with tag', 'myTag')

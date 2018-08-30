@@ -1,6 +1,7 @@
 var winston = require('winston')
 const moment = require('moment')
 let LogentriesTransport = require('./logentries')
+let MailgunTransport = require('./mail')
 let logger = null
 
 const timestamp = function () {
@@ -53,7 +54,7 @@ const loggerHelper = {
   debug: wrapper('debug')
 }
 
-module.exports.getLogger = function (token) {
+module.exports.getLogger = function (token, apiKey, app) {
   if (logger !== null) {
     return loggerHelper
   }
@@ -64,6 +65,17 @@ module.exports.getLogger = function (token) {
         level: 'info',
         handleExceptions: true,
         token: token
+      })
+    )
+  }
+
+  if (apiKey !== undefined && app !== undefined) {
+    transports.push(
+      new MailgunTransport({
+        level: 'error',
+        handleExceptions: true,
+        apiKey: apiKey,
+        app: app
       })
     )
   }
