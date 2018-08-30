@@ -6,7 +6,7 @@ module.exports = class LogentriesTransport extends Transport {
     super(opts)
 
     this.headers = { 'Content-Type': 'application/json' }
-    this.url = `https://webhook.logentries.com/noformat/logs/${opts.token}`
+    this.url = `http://webhook.logentries.com/noformat/logs/${opts.token}`
   }
 
   log (info, callback) {
@@ -21,11 +21,11 @@ module.exports = class LogentriesTransport extends Transport {
       }
     }
 
-    request.post({
+    request.post(this.url, {
       headers: this.headers,
-      url: this.url,
-      json: info,
-      callback: callback
+      json: info
     })
+
+    callback()
   }
 }

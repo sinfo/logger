@@ -10,4 +10,4 @@ logger.error({ bizarre: 'Simulating an error' }, 'stupid')
 
 require('./index').getLogger().debug('No new instance of logger was created', 'example')
 
-process.exit(0)
+setTimeout(() => console.log('done!'), 5000)
