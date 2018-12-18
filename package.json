@@ -36,6 +36,7 @@
   "dependencies": {
     "mailgun-js": "^0.20.0",
     "moment": "^2.22.2",
+    "prettyjson": "^1.2.1",
     "request": "^2.87.0",
     "winston": "^3.0.0",
     "winston-transport": "^4.2.0"

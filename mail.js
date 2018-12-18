@@ -1,5 +1,6 @@
 const Transport = require('winston-transport')
 const DOMAIN = 'sinfo.org'
+const prettyjson = require('prettyjson')
 
 function send (mailgun, app, message, raw) {
   if (mailgun === undefined) {
@@ -10,7 +11,7 @@ function send (mailgun, app, message, raw) {
     from: 'Mailgun <mailgun@sinfo.org>',
     to: 'devteam@sinfo.org',
     subject: `[Log alert] ${app}`,
-    text: JSON.stringify(message.raw, null, 2)
+    text: prettyjson.render(message.raw)
   }
 
   mailgun.messages().send(data, function (error, body) {
