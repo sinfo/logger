@@ -11,7 +11,7 @@ function send (mailgun, app, message, raw) {
     from: 'Mailgun <mailgun@sinfo.org>',
     to: 'devteam@sinfo.org',
     subject: `[Log alert] ${app}`,
-    text: prettyjson.render(message.raw)
+    text: prettyjson.render(message.raw, { noColor: true })
   }
 
   mailgun.messages().send(data, function (error, body) {
