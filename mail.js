@@ -1,7 +1,7 @@
 const Transport = require('winston-transport')
 const DOMAIN = 'sinfo.org'
 
-function send (mailgun, app, message) {
+function send (mailgun, app, message, raw) {
   if (mailgun === undefined) {
     throw new Error('Mailgun not initialized')
   }
@@ -10,7 +10,7 @@ function send (mailgun, app, message) {
     from: 'Mailgun <mailgun@sinfo.org>',
     to: 'devteam@sinfo.org',
     subject: `[Log alert] ${app}`,
-    text: message
+    text: JSON.stringify(message.raw, null, 2)
   }
 
   mailgun.messages().send(data, function (error, body) {
