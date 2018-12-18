@@ -10,7 +10,7 @@ function send (mailgun, app, message) {
     from: 'Mailgun <mailgun@sinfo.org>',
     to: 'devteam@sinfo.org',
     subject: `[Log alert] ${app}`,
-    text: JSON.stringify(message, null, 2)
+    text: message
   }
 
   mailgun.messages().send(data, function (error, body) {

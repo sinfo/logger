@@ -37,7 +37,7 @@ let transports = [
 
 function wrapper (level) {
   return (message, tags) => {
-    message = typeof (message) === 'object' ? JSON.stringify(message) : message
+    message = typeof (message) === 'object' ? JSON.stringify(message, null, 2) : message
     if (tags) {
       logger[level]({ message: message, tags: tags })
     } else {
